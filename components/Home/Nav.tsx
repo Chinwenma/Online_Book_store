@@ -1,9 +1,12 @@
+// "use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import SeacrhBox from "../Helper/SeacrhBox";
+import SeacrhBox from "../Helper/SearchBox";
 import { HeartIcon, UserIcon } from "lucide-react";
 import ShoppingCartBtn from "../Helper/ShoppingCartBtn";
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
 
 const Nav = () => {
   return (
@@ -20,9 +23,18 @@ const Nav = () => {
         </Link>
         <div className="flex items-center space-x-6">
           <SeacrhBox />
-          <HeartIcon size={20} cursor={"pointer"}/>
+          <HeartIcon size={20} cursor={"pointer"} />
           <ShoppingCartBtn />
-          <UserIcon  cursor={"pointer"} size={26}/>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+
+          <SignedOut>
+            <SignInButton>          
+              <UserIcon cursor={"pointer"} size={26} />
+            </SignInButton>
+          </SignedOut>
 
         </div>
       </div>
